@@ -1,4 +1,5 @@
 # TopJava Release Notes
+<<<<<<< HEAD
 ### Topjava 19
 - Изменилась логика для интервалов времени (исключаем `endTime`)
 - Заменил собственный `MessageUtil` велосипед на спринговый `MessageSourceAccessor`
@@ -15,6 +16,8 @@
   - Для `InMemory` тестов подключаю только `inmemory.xml` (добавил туда необходимую конфигурацию из `spring-app.xml`)
   
 
+=======
+>>>>>>> dfd212c... Update topjava
 ### Topjava 18
 
 - В `ErrorType` добавил `HttpStatus status`
