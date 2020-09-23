@@ -4,7 +4,11 @@
 
     <groupId>ru.javawebinar</groupId>
     <artifactId>topjava</artifactId>
+<<<<<<< HEAD
     <packaging>war</packaging>
+=======
+    <packaging>jar</packaging>
+>>>>>>> fd46400... Init commit
 
     <version>1.0-SNAPSHOT</version>
 
@@ -15,6 +19,7 @@
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+<<<<<<< HEAD
 
         <spring.version>5.2.9.RELEASE</spring.version>
 
@@ -25,11 +30,17 @@
         <!--    Tests  -->
         <junit.version>4.13.1</junit.version>
         <assertj.version>3.17.2</assertj.version>
+=======
+>>>>>>> fd46400... Init commit
     </properties>
 
     <build>
         <finalName>topjava</finalName>
+<<<<<<< HEAD
         <defaultGoal>package</defaultGoal>
+=======
+        <defaultGoal>install</defaultGoal>
+>>>>>>> fd46400... Init commit
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -40,6 +51,7 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+<<<<<<< HEAD
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -48,10 +60,13 @@
                     <argLine>-Dfile.encoding=UTF-8</argLine>
                 </configuration>
             </plugin>
+=======
+>>>>>>> fd46400... Init commit
         </plugins>
     </build>
 
     <dependencies>
+<<<<<<< HEAD
         <!-- Logging with SLF4J & LogBack -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -133,6 +148,8 @@
             <artifactId>postgresql</artifactId>
             <version>42.2.18</version>
         </dependency>
+=======
+>>>>>>> fd46400... Init commit
     </dependencies>
 
     <profiles>

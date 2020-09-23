@@ -3,4 +3,10 @@ out
 target
 *.iml
 log
+<<<<<<< HEAD
 *.patch
+=======
+*.patch
+
+
+>>>>>>> fd46400... Init commit
