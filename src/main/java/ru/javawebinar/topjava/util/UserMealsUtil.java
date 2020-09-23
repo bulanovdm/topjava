@@ -1,6 +1,5 @@
 package ru.javawebinar.topjava.util;
 
-import org.jetbrains.annotations.NotNull;
 import ru.javawebinar.topjava.model.UserMeal;
 import ru.javawebinar.topjava.model.UserMealWithExcess;
 import java.time.LocalDate;
@@ -32,19 +31,17 @@ public class UserMealsUtil {
     }
 
     public static List<UserMealWithExcess> filteredByCycles(List<UserMeal> meals, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
-
-        // fill the map & merge calories in one day
         Map<LocalDate, Integer> mapWithDates = new LinkedHashMap<>();
         for (UserMeal meal : meals) {
             mapWithDates.merge(meal.getLocalDate(), meal.getCalories(), Integer::sum);
         }
 
-        // fill list and return it
         List<UserMealWithExcess> userMealWithExcessList = new ArrayList<>();
         for (UserMeal meal : meals) {
-            if (isBetweenHalfOpen(meal.getLocalTime(), startTime, endTime)) userMealWithExcessList
-                    .add(new UserMealWithExcess(meal.getDateTime(), meal.getDescription(), meal.getCalories(),
-                            mapWithDates.get(meal.getLocalDate()) > caloriesPerDay));
+            if (isBetweenHalfOpen(meal.getLocalTime(), startTime, endTime)) {
+                userMealWithExcessList.add(new UserMealWithExcess(meal.getDateTime(), meal.getDescription(), meal.getCalories(),
+                                mapWithDates.get(meal.getLocalDate()) > caloriesPerDay));
+            }
         }
         return userMealWithExcessList;
     }
