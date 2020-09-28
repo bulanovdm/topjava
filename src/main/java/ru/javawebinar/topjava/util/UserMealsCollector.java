@@ -15,7 +15,6 @@ import java.util.stream.Collector;
 //in progress
 
 public class UserMealsCollector implements Collector<UserMeal, LinkedHashMap<UserMealWithExcess, Integer>, List<UserMealWithExcess>> {
-
     @Override
     public Supplier<LinkedHashMap<UserMealWithExcess, Integer>> supplier() {
         return null;

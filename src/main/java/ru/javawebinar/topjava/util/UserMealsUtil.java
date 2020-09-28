@@ -1,6 +1,5 @@
 package ru.javawebinar.topjava.util;
 
-import org.jetbrains.annotations.NotNull;
 import ru.javawebinar.topjava.model.UserMeal;
 import ru.javawebinar.topjava.model.UserMealWithExcess;
 
@@ -11,6 +10,9 @@ import java.time.Month;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 import static ru.javawebinar.topjava.util.TimeUtil.isBetweenHalfOpen;
 
 public class UserMealsUtil {
@@ -53,24 +55,24 @@ public class UserMealsUtil {
 
     public static List<UserMealWithExcess> filteredByStreams(List<UserMeal> meals, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
         Map<LocalDate, Integer> mapWithDatesStream = meals.stream()
-                .collect(Collectors.groupingBy(UserMeal::getLocalDate, Collectors.summingInt(UserMeal::getCalories)));
+                .collect(groupingBy(UserMeal::getLocalDate, Collectors.summingInt(UserMeal::getCalories)));
 
         return meals.stream()
                 .filter(userMeal -> isBetweenHalfOpen(userMeal.getLocalTime(), startTime, endTime))
                 .map(userMeal -> new UserMealWithExcess(userMeal.getDateTime(), userMeal.getDescription(), userMeal.getCalories(),
                         mapWithDatesStream.get(userMeal.getDateTime().toLocalDate()) > caloriesPerDay))
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
-    public static List<UserMealWithExcess> filteredByStreamsOptional2(@NotNull List<UserMeal> meals, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
+    public static List<UserMealWithExcess> filteredByStreamsOptional2(List<UserMeal> meals, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
         return meals.stream()
-                .collect(Collectors.groupingBy(userMeal -> userMeal.getDateTime().toLocalDate()))
+                .collect(groupingBy(userMeal -> userMeal.getDateTime().toLocalDate()))
                 .values().stream()
                 .flatMap(list -> list.stream()
                         .filter(userMeal -> isBetweenHalfOpen(userMeal.getDateTime().toLocalTime(), startTime, endTime))
                         .map(userMeal -> new UserMealWithExcess(userMeal.getDateTime(), userMeal.getDescription(), userMeal.getCalories(),
                                 list.stream().mapToInt(UserMeal::getCalories).sum() > caloriesPerDay)))
-                .sorted(Comparator.comparing(UserMealWithExcess::getDateTime))
-                .collect(Collectors.toList());
+                .sorted(comparing(UserMealWithExcess::getDateTime))
+                .collect(toList());
     }
 }
