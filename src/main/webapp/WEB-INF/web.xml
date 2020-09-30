@@ -16,6 +16,7 @@
         <url-pattern>/users</url-pattern>
     </servlet-mapping>
 
+    <<<<<<< HEAD
     <servlet>
         <servlet-name>mealServlet</servlet-name>
         <servlet-class>ru.javawebinar.topjava.web.MealServlet</servlet-class>
@@ -26,4 +27,6 @@
         <url-pattern>/meals</url-pattern>
     </servlet-mapping>
 
+=======
+>>>>>>> bdda082... 1_2_switch_to_war
 </web-app>
