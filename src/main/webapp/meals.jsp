@@ -26,7 +26,7 @@
     </tr>
     <c:forEach items="${mealsTo}" var="meal">
         <tr ${meal.excess? 'red':'green'}>
-            <td>${meal.date} ${meal.time}
+            <td>${meal.date} ${meal.time}</td>
             <td>${meal.description}</td>
             <td>${meal.calories}</td>
         </tr>
