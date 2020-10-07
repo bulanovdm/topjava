@@ -28,11 +28,8 @@ public class MealMemory implements MealRepo {
 
     @Override
     public Meal edit(Meal meal) {
-        if (mapMeal.containsKey(meal.getId())) {
-            return mapMeal.put(meal.getId(), meal);
-        } else {
-            return null;
-        }
+        mapMeal.computeIfPresent(meal.getId(), (key, value) -> value = meal);
+        return meal;
     }
 
     @Override
