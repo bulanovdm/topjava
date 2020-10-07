@@ -72,10 +72,10 @@ public class MealServlet extends HttpServlet {
         resp.sendRedirect("meals");
     }
 
-    private Meal createMeal(HttpServletRequest request) {
-        LocalDateTime datetime = LocalDateTime.parse(request.getParameter("datetime"));
-        String description = request.getParameter("description");
-        int calories = Integer.parseInt(request.getParameter("calories"));
+    private Meal createMeal(HttpServletRequest req) {
+        LocalDateTime datetime = LocalDateTime.parse(req.getParameter("datetime"));
+        String description = req.getParameter("description");
+        int calories = Integer.parseInt(req.getParameter("calories"));
         return new Meal(datetime, description, calories);
     }
 }

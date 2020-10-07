@@ -1,10 +1,13 @@
 package ru.javawebinar.topjava.model;
 
+import lombok.Getter;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class Meal {
+public @Getter
+class Meal {
     public static final int EXCESS = 2000;
 
     private long id;
@@ -26,28 +29,12 @@ public class Meal {
         this(0, dateTime, description, calories);
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getCalories() {
-        return calories;
-    }
-
     public LocalDate getDate() {
         return dateTime.toLocalDate();
     }
 
     public LocalTime getTime() {
         return dateTime.toLocalTime();
-    }
-
-    public long getId() {
-        return id;
     }
 
     public void setId(long id) {
