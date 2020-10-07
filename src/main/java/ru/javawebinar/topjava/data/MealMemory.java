@@ -14,7 +14,7 @@ public class MealMemory implements MealRepo {
     private final Map<Long, Meal> mapMeal = new ConcurrentHashMap<>();
 
     @Override
-    public List<Meal> query() {
+    public List<Meal> getAll() {
         return new ArrayList<>(mapMeal.values());
     }
 
@@ -29,11 +29,10 @@ public class MealMemory implements MealRepo {
     @Override
     public Meal edit(Meal meal) {
         if (mapMeal.containsKey(meal.getId())) {
-            mapMeal.replace(meal.getId(), meal);
+            return mapMeal.put(meal.getId(), meal);
         } else {
             return null;
         }
-        return meal;
     }
 
     @Override

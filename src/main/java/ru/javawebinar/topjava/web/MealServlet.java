@@ -2,6 +2,7 @@ package ru.javawebinar.topjava.web;
 
 import org.slf4j.Logger;
 import ru.javawebinar.topjava.data.MealMemory;
+import ru.javawebinar.topjava.data.MealRepo;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.util.MealsUtil;
 
@@ -19,7 +20,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 public class MealServlet extends HttpServlet {
     private static final Logger log = getLogger(MealServlet.class);
-    private static MealMemory data;
+    private static MealRepo data;
 
     @Override
     public void init() {
@@ -52,7 +53,7 @@ public class MealServlet extends HttpServlet {
                 resp.sendRedirect("meals");
                 break;
             default:
-                req.setAttribute("mealList", MealsUtil.filteredByStreams(data.query(), LocalTime.MIN, LocalTime.MAX, Meal.EXCESS));
+                req.setAttribute("mealList", MealsUtil.filteredByStreams(data.getAll(), LocalTime.MIN, LocalTime.MAX, MealsUtil.EXCESS));
                 getServletContext().getRequestDispatcher("/meals.jsp").forward(req, resp);
                 break;
         }
