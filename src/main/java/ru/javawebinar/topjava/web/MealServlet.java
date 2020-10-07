@@ -1,16 +1,23 @@
 package ru.javawebinar.topjava.web;
 
+<<<<<<< HEAD
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.util.StringUtils;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.web.meal.MealRestController;
+=======
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ru.javawebinar.topjava.util.MealsUtil;
+>>>>>>> d972773... 2_1_HW1
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+<<<<<<< HEAD
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -90,5 +97,16 @@ public class MealServlet extends HttpServlet {
     private int getId(HttpServletRequest request) {
         String paramId = Objects.requireNonNull(request.getParameter("id"));
         return Integer.parseInt(paramId);
+=======
+
+public class MealServlet extends HttpServlet {
+    private static final Logger log = LoggerFactory.getLogger(MealServlet.class);
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        log.info("getAll");
+        request.setAttribute("meals", MealsUtil.getTos(MealsUtil.meals, MealsUtil.DEFAULT_CALORIES_PER_DAY));
+        request.getRequestDispatcher("/meals.jsp").forward(request, response);
+>>>>>>> d972773... 2_1_HW1
     }
 }

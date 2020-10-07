@@ -2,16 +2,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://topjava.javawebinar.ru/functions" %>
+<<<<<<< HEAD
 <html>
 <head>
     <title>Meals</title>
     <link rel="stylesheet" href="css/style.css">
+=======
+<%--<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>--%>
+<html>
+<head>
+    <title>Meal list</title>
+    <style>
+        .normal {
+            color: green;
+        }
+
+        .excess {
+            color: red;
+        }
+    </style>
+>>>>>>> d972773... 2_1_HW1
 </head>
 <body>
 <section>
     <h3><a href="index.html">Home</a></h3>
     <hr/>
     <h2>Meals</h2>
+<<<<<<< HEAD
     <form method="get" action="meals">
         <input type="hidden" name="action" value="filter">
         <dl>
@@ -35,12 +52,15 @@
     <hr/>
     <a href="meals?action=create">Add Meal</a>
     <br><br>
+=======
+>>>>>>> d972773... 2_1_HW1
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
         <tr>
             <th>Date</th>
             <th>Description</th>
             <th>Calories</th>
+<<<<<<< HEAD
             <th></th>
             <th></th>
         </tr>
@@ -48,6 +68,13 @@
         <c:forEach items="${meals}" var="meal">
             <jsp:useBean id="meal" type="ru.javawebinar.topjava.to.MealTo"/>
             <tr data-mealExcess="${meal.excess}">
+=======
+        </tr>
+        </thead>
+        <c:forEach items="${meals}" var="meal">
+            <jsp:useBean id="meal" type="ru.javawebinar.topjava.model.MealTo"/>
+            <tr class="${meal.excess ? 'excess' : 'normal'}">
+>>>>>>> d972773... 2_1_HW1
                 <td>
                         <%--${meal.dateTime.toLocalDate()} ${meal.dateTime.toLocalTime()}--%>
                         <%--<%=TimeUtil.toString(meal.getDateTime())%>--%>
@@ -56,8 +83,11 @@
                 </td>
                 <td>${meal.description}</td>
                 <td>${meal.calories}</td>
+<<<<<<< HEAD
                 <td><a href="meals?action=update&id=${meal.id}">Update</a></td>
                 <td><a href="meals?action=delete&id=${meal.id}">Delete</a></td>
+=======
+>>>>>>> d972773... 2_1_HW1
             </tr>
         </c:forEach>
     </table>
