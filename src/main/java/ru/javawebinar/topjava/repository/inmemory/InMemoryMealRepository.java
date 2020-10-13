@@ -12,9 +12,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class InMemoryMealRepository implements MealRepository {
     private final Map<Integer, Meal> repository = new ConcurrentHashMap<>();
     private final AtomicInteger counter = new AtomicInteger(0);
+    private final AtomicInteger id = new AtomicInteger(0);
 
     {
         MealsUtil.meals.forEach(this::save);
+        repository.forEach((integer, meal) -> meal.setUserId(id.incrementAndGet()));
     }
 
     @Override
