@@ -3,6 +3,7 @@ package ru.javawebinar.topjava;
 import ru.javawebinar.topjava.model.Role;
 import ru.javawebinar.topjava.model.User;
 
+<<<<<<< HEAD
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
@@ -13,10 +14,16 @@ import static ru.javawebinar.topjava.model.AbstractBaseEntity.START_SEQ;
 public class UserTestData {
     public static final int USER_ID = START_SEQ;
     public static final int ADMIN_ID = START_SEQ + 1;
+=======
+public class UserTestData {
+    public static final int USER_ID = 1;
+    public static final int ADMIN_ID = 2;
+>>>>>>> 1f593c6... 3_09_add_junit
     public static final int NOT_FOUND = 10;
 
     public static final User user = new User(USER_ID, "User", "user@yandex.ru", "password", Role.USER);
     public static final User admin = new User(ADMIN_ID, "Admin", "admin@gmail.com", "admin", Role.ADMIN);
+<<<<<<< HEAD
 
     public static User getNew() {
         return new User(null, "New", "new@gmail.com", "newPass", 1555, false, new Date(), Collections.singleton(Role.USER));
@@ -40,4 +47,6 @@ public class UserTestData {
     public static void assertMatch(Iterable<User> actual, Iterable<User> expected) {
         assertThat(actual).usingElementComparatorIgnoringFields("registered", "roles").isEqualTo(expected);
     }
+=======
+>>>>>>> 1f593c6... 3_09_add_junit
 }
