@@ -29,6 +29,14 @@ public class MealTestData {
     public static final Meal adminMeal1 = new Meal(ADMIN_MEAL_ID,
             LocalDateTime.of(2020, Month.OCTOBER, 19, 18, 0), "adminMeal1", 500);
 
+    // (100001, 1000, 'adminMeal2', '2020-10-20 19:00')
+    public static final Meal adminMeal2 = new Meal(ADMIN_MEAL_ID + 1,
+            LocalDateTime.of(2020, Month.OCTOBER, 20, 19, 0), "adminMeal1", 1000);
+
+    // (100001, 600, 'adminMeal3', '2020-10-21 20:00')
+    public static final Meal adminMeal3 = new Meal(ADMIN_MEAL_ID + 2,
+            LocalDateTime.of(2020, Month.OCTOBER, 21, 20, 0), "adminMeal1", 600);
+
     public static Meal getNewMeal() {
         return new Meal(null, LocalDateTime.of(2020, Month.OCTOBER, 20, 12, 0), "Meal", 1000);
     }
