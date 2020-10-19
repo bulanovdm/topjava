@@ -37,7 +37,7 @@ public class UserServiceTest {
 
     @Test
     public void create() throws Exception {
-        User newUser = getNew();
+        User newUser = getNewUser();
         User created = service.create(newUser);
         Integer newId = created.getId();
         newUser.setId(newId);
@@ -81,7 +81,7 @@ public class UserServiceTest {
 
     @Test
     public void update() throws Exception {
-        User updated = getUpdated();
+        User updated = getUpdatedUser();
         service.update(updated);
         assertMatch(service.get(USER_ID), updated);
     }
