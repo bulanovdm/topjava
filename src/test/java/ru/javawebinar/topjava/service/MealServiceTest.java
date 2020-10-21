@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
@@ -53,8 +54,23 @@ public class MealServiceTest {
     public void getBetweenInclusive() {
         List<Meal> meals = service.getBetweenInclusive(
                 LocalDate.of(2020, Month.OCTOBER, 19),
-                LocalDate.of(2020, Month.OCTOBER, 19), USER_ID);
-        assertMatch(meals, userMeal1);
+                LocalDate.of(2020, Month.OCTOBER, 20), USER_ID);
+        assertMatch(meals, userMeal2, userMeal1);
+    }
+
+    @Test
+    public void duplicateDateTimeCreate() {
+        assertThrows(DataAccessException.class, () ->
+                service.create(new Meal(userMeal1.getDateTime(), "userMeal4", 1000), USER_ID));
+
+//        assertThrows(DataAccessException.class, () ->
+//                service.create(new Meal(USER_MEAL_ID + 10, userMeal1.getDateTime(), "userMeal4", 1000), USER_ID));
+    }
+
+    @Test
+    public void getBetweenInclusiveWithoutRanges() {
+        List<Meal> meals = service.getBetweenInclusive(null, null, USER_ID);
+        assertMatch(meals, userMeal3, userMeal2, userMeal1);
     }
 
     @Test
