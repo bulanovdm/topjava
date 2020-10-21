@@ -51,4 +51,8 @@ public class Meal extends AbstractBaseEntity {
                 ", calories=" + calories +
                 '}';
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1443588... rebase from master_gc
