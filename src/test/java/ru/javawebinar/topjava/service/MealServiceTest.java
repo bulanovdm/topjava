@@ -62,9 +62,6 @@ public class MealServiceTest {
     public void duplicateDateTimeCreate() {
         assertThrows(DataAccessException.class, () ->
                 service.create(new Meal(userMeal1.getDateTime(), "userMeal4", 1000), USER_ID));
-
-//        assertThrows(DataAccessException.class, () ->
-//                service.create(new Meal(USER_MEAL_ID + 10, userMeal1.getDateTime(), "userMeal4", 1000), USER_ID));
     }
 
     @Test
@@ -96,17 +93,17 @@ public class MealServiceTest {
     }
 
     @Test
-    public void unauthorizedGet() {
+    public void foreignMealGet() {
         assertThrows(NotFoundException.class, () -> service.get(ADMIN_MEAL_ID, USER_ID));
     }
 
     @Test
-    public void unauthorizedDelete() {
+    public void foreignMealDelete() {
         assertThrows(NotFoundException.class, () -> service.delete(USER_MEAL_ID, ADMIN_ID));
     }
 
     @Test
-    public void unauthorizedUpdate() {
+    public void foreignMealUpdate() {
         Meal updatedMeal = getUpdatedMeal();
         assertThrows(NotFoundException.class, () -> service.update(updatedMeal, ADMIN_ID));
     }
