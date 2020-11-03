@@ -1,6 +1,7 @@
 package ru.javawebinar.topjava.repository.datajpa;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.repository.MealRepository;
 
@@ -11,33 +12,45 @@ import java.util.List;
 public class DataJpaMealRepository implements MealRepository {
 
     private final CrudMealRepository crudRepository;
+    private final CrudUserRepository userCrudRepository;
 
-    public DataJpaMealRepository(CrudMealRepository crudRepository) {
+    public DataJpaMealRepository(CrudMealRepository crudRepository, CrudUserRepository userCrudRepository) {
         this.crudRepository = crudRepository;
+        this.userCrudRepository = userCrudRepository;
     }
 
+    @Transactional
     @Override
     public Meal save(Meal meal, int userId) {
-        return null;
+        if (!meal.isNew() && get(meal.id(), userId) == null) {
+            return null;
+        }
+        meal.setUser(userCrudRepository.getOne(userId));
+        return crudRepository.save(meal);
     }
 
     @Override
     public boolean delete(int id, int userId) {
-        return false;
+        return crudRepository.deleteByIdAndUserId(id, userId) != 0;
     }
 
     @Override
     public Meal get(int id, int userId) {
-        return null;
+        return crudRepository.findDistinctByIdAndUserId(id, userId);
     }
 
     @Override
     public List<Meal> getAll(int userId) {
-        return null;
+        return crudRepository.findAllByUserIdOrderByDateTimeDesc(userId);
     }
 
     @Override
     public List<Meal> getBetweenHalfOpen(LocalDateTime startDateTime, LocalDateTime endDateTime, int userId) {
-        return null;
+        return crudRepository.getBetweenHalfOpen(startDateTime, endDateTime, userId);
+    }
+
+    @Override
+    public Meal getWithUser(int id, int userId) {
+        return crudRepository.getWithUser(id, userId);
     }
 }

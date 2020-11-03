@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava.service;
 
+//import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class UserService {
 
     private final UserRepository repository;
 
-    public UserService(UserRepository repository) {
+    public UserService(/* @Qualifier("dataJpaUserRepository") */ UserRepository repository) {
         this.repository = repository;
     }
 
@@ -50,5 +51,9 @@ public class UserService {
     public void update(User user) {
         Assert.notNull(user, "user must not be null");
         checkNotFoundWithId(repository.save(user), user.id());
+    }
+
+    public User getWithMeals(int id) {
+        return repository.getWithMeals(id);
     }
 }
