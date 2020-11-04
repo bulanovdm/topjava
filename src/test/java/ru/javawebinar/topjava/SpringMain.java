@@ -17,7 +17,6 @@ import java.util.List;
 public class SpringMain {
     public static void main(String[] args) {
         // java 7 automatic resource management (ARM)
-        System.setProperty("spring.profiles.active", Profiles.REPOSITORY_IMPLEMENTATION + ", " + Profiles.getActiveDbProfile());
         try (AbstractXmlApplicationContext appCtx = new ClassPathXmlApplicationContext()) {
             appCtx.setConfigLocations("spring/spring-app.xml", "spring/spring-db.xml");
             appCtx.getEnvironment().setActiveProfiles(Profiles.getActiveDbProfile(), Profiles.REPOSITORY_IMPLEMENTATION);
