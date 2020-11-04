@@ -19,7 +19,7 @@ public class MealService {
 
     private final MealRepository repository;
 
-    public MealService(/* @Qualifier("dataJpaMealRepository") */ MealRepository repository) {
+    public MealService(MealRepository repository) {
         this.repository = repository;
     }
 
@@ -50,6 +50,6 @@ public class MealService {
     }
 
     public Meal getWithUser(int id, int userId) {
-        return repository.getWithUser(id, userId);
+        return checkNotFoundWithId(repository.getWithUser(id, userId), id);
     }
 }
