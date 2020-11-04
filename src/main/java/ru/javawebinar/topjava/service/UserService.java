@@ -53,7 +53,6 @@ public class UserService {
         checkNotFoundWithId(repository.save(user), user.id());
     }
 
-    @Cacheable("users")
     public User getWithMeals(int id) {
         return checkNotFoundWithId(repository.getWithMeals(id), id);
     }

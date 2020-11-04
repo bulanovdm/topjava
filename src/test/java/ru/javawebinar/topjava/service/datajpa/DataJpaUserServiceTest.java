@@ -25,6 +25,6 @@ public class DataJpaUserServiceTest extends UserServiceTest {
 
     @Test
     public void getWithMealsNotFound() {
-        assertThrows(NotFoundException.class, () -> service.getWithMeals(NOT_FOUND));
+        assertThrows(NotFoundException.class, () -> service.getWithMeals(USER_WITHOUT_MEALS));
     }
 }
