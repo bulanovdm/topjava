@@ -5,3 +5,4 @@ target
 log
 *.patch
 lib
+hsql
