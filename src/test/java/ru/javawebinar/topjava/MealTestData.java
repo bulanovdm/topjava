@@ -1,6 +1,7 @@
 package ru.javawebinar.topjava;
 
 import ru.javawebinar.topjava.model.Meal;
+import ru.javawebinar.topjava.to.MealTo;
 
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
@@ -27,11 +28,26 @@ public class MealTestData {
 
     public static final List<Meal> meals = List.of(meal7, meal6, meal5, meal4, meal3, meal2, meal1);
 
+    public static final MealTo mealTo1 = createTestMealTo(meal1, false);
+    public static final MealTo mealTo2 = createTestMealTo(meal2, false);
+    public static final MealTo mealTo3 = createTestMealTo(meal3, false);
+    public static final MealTo mealTo4 = createTestMealTo(meal4, true);
+    public static final MealTo mealTo5 = createTestMealTo(meal5, true);
+    public static final MealTo mealTo6 = createTestMealTo(meal6, true);
+    public static final MealTo mealTo7 = createTestMealTo(meal7, true);
+    public static final TestMatcher<MealTo> MEALTO_MATCHER = TestMatcher.usingIgnoringFieldsComparator(MealTo.class);
+
+    public static final List<MealTo> mealTos = List.of(mealTo7, mealTo6, mealTo5, mealTo4, mealTo3, mealTo2, mealTo1);
+
     public static Meal getNew() {
         return new Meal(null, of(2020, Month.FEBRUARY, 1, 18, 0), "Созданный ужин", 300);
     }
 
     public static Meal getUpdated() {
         return new Meal(MEAL1_ID, meal1.getDateTime().plus(2, ChronoUnit.MINUTES), "Обновленный завтрак", 200);
+    }
+
+    public static MealTo createTestMealTo(Meal meal, boolean excess) {
+        return new MealTo(meal.getId(), meal.getDateTime(), meal.getDescription(), meal.getCalories(), excess);
     }
 }
