@@ -9,6 +9,7 @@ import java.util.List;
 
 import static java.time.LocalDateTime.of;
 import static ru.javawebinar.topjava.model.AbstractBaseEntity.START_SEQ;
+import static ru.javawebinar.topjava.util.MealsUtil.createTo;
 
 public class MealTestData {
     public static final int NOT_FOUND = 10;
@@ -28,13 +29,13 @@ public class MealTestData {
 
     public static final List<Meal> meals = List.of(meal7, meal6, meal5, meal4, meal3, meal2, meal1);
 
-    public static final MealTo mealTo1 = createTestMealTo(meal1, false);
-    public static final MealTo mealTo2 = createTestMealTo(meal2, false);
-    public static final MealTo mealTo3 = createTestMealTo(meal3, false);
-    public static final MealTo mealTo4 = createTestMealTo(meal4, true);
-    public static final MealTo mealTo5 = createTestMealTo(meal5, true);
-    public static final MealTo mealTo6 = createTestMealTo(meal6, true);
-    public static final MealTo mealTo7 = createTestMealTo(meal7, true);
+    public static final MealTo mealTo1 = createTo(meal1, false);
+    public static final MealTo mealTo2 = createTo(meal2, false);
+    public static final MealTo mealTo3 = createTo(meal3, false);
+    public static final MealTo mealTo4 = createTo(meal4, true);
+    public static final MealTo mealTo5 = createTo(meal5, true);
+    public static final MealTo mealTo6 = createTo(meal6, true);
+    public static final MealTo mealTo7 = createTo(meal7, true);
     public static final TestMatcher<MealTo> MEALTO_MATCHER = TestMatcher.usingIgnoringFieldsComparator(MealTo.class);
 
     public static final List<MealTo> mealTos = List.of(mealTo7, mealTo6, mealTo5, mealTo4, mealTo3, mealTo2, mealTo1);
@@ -45,9 +46,5 @@ public class MealTestData {
 
     public static Meal getUpdated() {
         return new Meal(MEAL1_ID, meal1.getDateTime().plus(2, ChronoUnit.MINUTES), "Обновленный завтрак", 200);
-    }
-
-    public static MealTo createTestMealTo(Meal meal, boolean excess) {
-        return new MealTo(meal.getId(), meal.getDateTime(), meal.getDescription(), meal.getCalories(), excess);
     }
 }
