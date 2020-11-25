@@ -81,7 +81,6 @@ class MealRestControllerTest extends AbstractControllerTest {
         MEAL_MATCHER.assertMatch(service.get(MEAL1_ID, USER_ID), updated);
     }
 
-
     @Test
     void getFiltered() throws Exception {
         perform(MockMvcRequestBuilders.get(REST_URL + "filter")
