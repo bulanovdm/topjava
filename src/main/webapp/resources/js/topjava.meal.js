@@ -31,10 +31,21 @@ $(function () {
             "order": [
                 [
                     0,
-                    "asc"
+                    "desc"
                 ]
             ]
         })
     };
-    makeEditable();
+    makeEditable(updateTable);
 });
+
+function resetFilter() {
+    $('#filterForm').find(":input").val("");
+    updateTable()
+}
+
+function updateTable() {
+    $.get(ctx.ajaxUrl + "filter", $('#filterForm').serialize(), function (data) {
+        ctx.datatableApi.clear().rows.add(data).draw();
+    });
+}
