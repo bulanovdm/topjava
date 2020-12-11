@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="webjars/datatables/1.10.21/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="webjars/noty/3.1.4/lib/noty.css"/>
     <link rel="stylesheet" href="webjars/datetimepicker/2.5.20-1/jquery.datetimepicker.css">
+    <link rel="stylesheet" href="webjars/flatpickr/4.6.6/dist/flatpickr.min.css">
     <link rel="shortcut icon" href="resources/images/icon-meal.png">
 
     <%--http://stackoverflow.com/a/24070373/548473--%>
@@ -23,4 +24,5 @@
     <script type="text/javascript" src="webjars/noty/3.1.4/lib/noty.min.js" defer></script>
     <script type="text/javascript" src="webjars/datetimepicker/2.5.20-1/build/jquery.datetimepicker.full.min.js"
             defer></script>
+    <script type="text/javascript" src="webjars/flatpickr/4.6.6/dist/flatpickr.min.js" defer></script>
 </head>

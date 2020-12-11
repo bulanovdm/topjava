@@ -20,11 +20,11 @@ public class DateTimeUtil {
     }
 
     public static LocalDateTime atStartOfDayOrMin(LocalDate localDate) {
-        return localDate != null ? localDate.atStartOfDay() : MIN_DATE;
+        return localDate == null ? MIN_DATE : localDate.atStartOfDay();
     }
 
     public static LocalDateTime atStartOfNextDayOrMax(LocalDate localDate) {
-        return localDate != null ? localDate.plus(1, ChronoUnit.DAYS).atStartOfDay() : MAX_DATE;
+        return localDate == null ? MAX_DATE : localDate.plus(1, ChronoUnit.DAYS).atStartOfDay();
     }
 
     public static String toString(LocalDateTime ldt) {

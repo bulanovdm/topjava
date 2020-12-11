@@ -46,7 +46,7 @@ public class UserService implements UserDetailsService {
     }
 
     public User getByEmail(String email) {
-        Assert.notNull(email, "email must not be null");
+        Assert.notNull(email, "email must not be empty");
         return checkNotFound(repository.getByEmail(email), "email=" + email);
     }
 
@@ -57,7 +57,7 @@ public class UserService implements UserDetailsService {
 
     @CacheEvict(value = "users", allEntries = true)
     public void update(User user) {
-        Assert.notNull(user, "user must not be null");
+        Assert.notNull(user, "user must not be empty");
 //      checkNotFoundWithId : check works only for JDBC, disabled
         repository.save(user);
     }

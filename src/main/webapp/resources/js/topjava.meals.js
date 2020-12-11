@@ -99,7 +99,7 @@ const endTime = $('#endTime');
 startTime.datetimepicker({
     datepicker: false,
     format: 'H:i',
-    onShow: function (ct) {
+    onShow: function () {
         this.setOptions({
             maxTime: endTime.val() ? endTime.val() : false
         })
@@ -109,7 +109,7 @@ startTime.datetimepicker({
 endTime.datetimepicker({
     datepicker: false,
     format: 'H:i',
-    onShow: function (ct) {
+    onShow: function () {
         this.setOptions({
             minTime: startTime.val() ? startTime.val() : false
         })

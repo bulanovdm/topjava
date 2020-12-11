@@ -76,7 +76,8 @@ function successNoty(key) {
         text: "<span class='fa fa-lg fa-check'></span> &nbsp;" + i18n[key],
         type: 'success',
         layout: "bottomRight",
-        timeout: 1000
+        theme: 'semanticui',
+        timeout: 3000
     }).show();
 }
 
@@ -84,8 +85,9 @@ function failNoty(jqXHR) {
     closeNoty();
     failedNote = new Noty({
         text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + i18n["common.errorStatus"] + ": " + jqXHR.status + (jqXHR.responseText ? "<br>" + jqXHR.responseText : ""),
-        type: "error",
-        layout: "bottomRight"
+        type: 'error',
+        layout: "bottomRight",
+        theme: 'semanticui'
     }).show();
 }
 
