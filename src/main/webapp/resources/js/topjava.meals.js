@@ -16,6 +16,21 @@ function clearFilter() {
     $.get(mealAjaxUrl, updateTableByData);
 }
 
+// http://api.jquery.com/jQuery.ajax/#using-converters
+$.ajaxSetup({
+    converters: {
+        "text json": function (stringData) {
+            var json = JSON.parse(stringData);
+            if (typeof json === 'object') {
+                $(json).each(function () {
+                    this.dateTime = this.dateTime.substr(0, 16).replace('T', ' ');
+                });
+            }
+            return json;
+        }
+    }
+});
+
 $(function () {
     makeEditable({
         "columns": [
