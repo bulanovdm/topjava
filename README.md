@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/bulanovdm/topjava.svg?branch=master)](https://travis-ci.org/bulanovdm/topjava)
+[![Build Status](https://travis-ci.org/bulanovdm/topjava.svg?branch=master)](https://travis-ci.org/bulanovdm/topjava) [![Coverage Status](https://coveralls.io/repos/github/bulanovdm/topjava/badge.svg?branch=master)](https://coveralls.io/github/bulanovdm/topjava?branch=master)
 
 Java Enterprise Online Project
 ===============================
