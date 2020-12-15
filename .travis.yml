@@ -24,3 +24,6 @@ services:
 # https://docs.travis-ci.com/user/notifications#Configuring-email-notifications
 #notifications:
 #  email: false
+
+after_success:
+  - mvn clean test saga:coverage coveralls:report
