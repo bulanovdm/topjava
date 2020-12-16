@@ -25,5 +25,6 @@ services:
 #notifications:
 #  email: false
 
+# https://github.com/trautonen/coveralls-maven-plugin#complete-plugin-configuration
 after_success:
   - mvn clean test saga:coverage coveralls:report
