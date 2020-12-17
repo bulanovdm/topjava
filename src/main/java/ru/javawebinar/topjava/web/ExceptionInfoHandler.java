@@ -20,6 +20,7 @@ import ru.javawebinar.topjava.util.exception.IllegalRequestDataException;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 import static ru.javawebinar.topjava.util.exception.ErrorType.*;
 
@@ -45,6 +46,15 @@ public class ExceptionInfoHandler {
     @ResponseStatus(HttpStatus.CONFLICT)  // 409
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ErrorInfo conflict(HttpServletRequest req, DataIntegrityViolationException e) {
+        String rootMsg = ValidationUtil.getRootCause(e).getMessage();
+        if (rootMsg != null) {
+            String lowerCaseMsg = rootMsg.toLowerCase();
+            for (Map.Entry<String, String> entry : CONSTRAINS_I18N_MAP.entrySet()) {
+                if (lowerCaseMsg.contains(entry.getKey())) {
+                    return logAndGetErrorInfo(req, e, false, VALIDATION_ERROR, messageSourceAccessor.getMessage(entry.getValue()));
+                }
+            }
+        }
         return logAndGetErrorInfo(req, e, true, DATA_ERROR);
     }
 
