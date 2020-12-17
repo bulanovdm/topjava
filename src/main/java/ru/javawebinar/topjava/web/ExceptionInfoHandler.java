@@ -7,6 +7,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +33,13 @@ public class ExceptionInfoHandler {
     @ExceptionHandler(NotFoundException.class)
     public ErrorInfo handleError(HttpServletRequest req, NotFoundException e) {
         return logAndGetErrorInfo(req, e, false, DATA_NOT_FOUND);
+    }
+
+    //    https://stackoverflow.com/questions/538870/should-private-helper-methods-be-static-if-they-can-be-static
+    private static ErrorInfo logAndGetErrorInfo(HttpServletRequest req, Exception e, boolean logStackTrace, ErrorType errorType, String... details) {
+        Throwable rootCause = ValidationUtil.logAndGetRootCause(log, req, e, logStackTrace, errorType);
+        return new ErrorInfo(req.getRequestURL(), errorType,
+                details.length != 0 ? details : new String[]{ValidationUtil.getMessage(rootCause)});
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)  // 409
