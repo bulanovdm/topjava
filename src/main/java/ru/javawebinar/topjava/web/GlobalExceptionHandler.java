@@ -43,14 +43,10 @@ public class GlobalExceptionHandler {
         Throwable rootCause = ValidationUtil.logAndGetRootCause(log, req, e, logException, errorType);
 
         ModelAndView mav = new ModelAndView("exception",
-                Map.of("exception", rootCause, "message", ValidationUtil.getMessage(rootCause), "status", httpStatus));
-        mav.setStatus(httpStatus);
-
-        // Interceptor is not invoked, put userTo
-        AuthorizedUser authorizedUser = SecurityUtil.safeGet();
-        if (authorizedUser != null) {
-            mav.addObject("userTo", authorizedUser.getUserTo());
-        }
+                Map.of("exception", rootCause, "message", code != null ? messageSourceAccessor.getMessage(code) : ValidationUtil.getMessage(rootCause),
+                        "typeMessage", messageSourceAccessor.getMessage(errorType.getErrorCode()),
+                        "status", errorType.getStatus()));
+        mav.setStatus(errorType.getStatus());
         return mav;
     }
 }
