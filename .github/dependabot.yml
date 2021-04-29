@@ -1,0 +1,24 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/"
+  schedule:
+    interval: monthly
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: org.springframework:spring-framework-bom
+    versions:
+    - 5.3.2
+    - 5.3.3
+  - dependency-name: org.codehaus.cargo:cargo-maven2-plugin
+    versions:
+    - 1.8.3
+  - dependency-name: org.hibernate.validator:hibernate-validator
+    versions:
+    - 7.0.0.Final
+  - dependency-name: org.assertj:assertj-core
+    versions:
+    - 3.18.1
+  - dependency-name: org.postgresql:postgresql
+    versions:
+    - 42.2.18
